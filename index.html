@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Document</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/fancyBox.css" />
+	<style>
+		.prev {
+			display: flex;
+			margin-left: -5px;
+			margin-right: -5px;
+
+		}
+
+		.prev .img {
+			--s: 100px;
+			max-width: var(--s);
+			flex: 0 0 var(--s);
+			height: var(--s);
+			padding: 5px;
+			overflow: hidden;
+		}
+
+		.prev .img img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	</style>
+</head>
+
+<body style="background-color: var(--gray); color:#fff;">
+	<div class="container">
+		<h4 class="text-center py-5">https://www.influ2.com/</h4>
+		<ol>
+			<li>не ясен подход к цсс ,когда он весь в хтмл инлайново. часто юзают для быстрой загрузки "первого экрана", но
+				не на стилизацию всей стр. + можно сжать этот цсс код
+				<div class="prev">
+					<a href="images/1.png" data-fancybox class="img"><img src="images/1.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				#__layout, #__nuxt height: 1px; min-height: 100% в чём смысл? на оф сайт https://nuxtjs.org/ я таких
+				странных стилей не вижу
+				<div class="prev">
+					<a href="images/2.png" data-fancybox class="img"><img src="images/2.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				в чём смысл делать лого в хедере не кликабельным , но при скроле, когда появляется новый "хедер" -
+				кликабельным?
+			</li>
+			<li>
+				не красивая структура главного меню, сделал бы иначе , списком и без наличия тегов button + обработчики
+				событий вешал бы на родителя ,а не на каждый тег a или button
+				<div class="prev">
+					<a href="images/3.png" data-fancybox class="img"><img src="images/3.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				есть баг при медленной проводки мыши на дропа-даун( когда курсор попадает на уголок, который сделан
+				псевдоэлементом). вариант фикса- не вешать уголок на абсолют или доп блок. а ещё лучше не позиционировать
+				дроп через top:120% . просто top:100% + некий паддинг
+				<div class="prev">
+					<a href="images/4.png" data-fancybox class="img"><img src="images/4.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				дроп-даун. зачем вешать на .header-main__link курсор пойнтер? сейчас поинтер появляется даже не на
+				кликабельной области, что не дает перейти по линку
+				<div class="prev">
+					<a href="images/5.png" data-fancybox class="img"><img src="images/5.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				не правильный подход в написании кода самого меню. при переполнении будет сразу сыпаться(нет ни паддингов на
+				LI ни переноса соседних Li на новую строку, ни плавного заполнения самого меню справа на лево. есть только
+				фиксированная ширина у родителя, что является хард кодом)
+				<div class="prev">
+					<a href="images/6.png" data-fancybox class="img"><img src="images/6.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				<strong class="text-danger">Все</strong> волнистые элементы надо делать через свг , а не вырезать всю
+				картинку целиком . встречаются бекграунды, где есть сплошной фон, но есть волна. итог - лишняя картинка для
+				прогрузки. на страницах блога встречаются картинки и по 3000 px в горизонте.
+				<div class="prev">
+					<a href="images/7.png" data-fancybox="f" class="img"><img src="images/7.png" alt=""></a>
+					<a href="images/7-1.png" data-fancybox="f" class="img"><img src="images/7-1.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				не правильный подход в реализации блока .main-intro . при переполнении блока будут проблемы (это сказывается
+				и на адаптиве)
+				<div class="prev">
+					<a href="images/8.png" data-fancybox class="img"><img src="images/8.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				блок аккордеона. маркера треугольники надо делать без картинок и без лишних блоков(псевдоэлементом делать).
+				при переполнении тайтла иконка треугольника - схлопывается(как и в адаптиве). опять же, использовал бы
+				делегирование событий и не вешал обработчик на каждый блок.
+				<div class="prev">
+					<a href="images/9.png" data-fancybox class="img"><img src="images/9.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+
+				<ul>
+					<li>блок с цитатами . при переполнении
+						<div class="prev">
+							<a href="images/10.png" data-fancybox class="img"><img src="images/10.png" alt=""></a>
+						</div>
+					</li>
+					<li>
+						нет паддингов между этими блокам. справа блок без класса и фактически является лишним :
+						<div class="prev">
+							<a href="images/10-1.png" data-fancybox class="img"><img src="images/10-1.png" alt=""></a>
+						</div>
+					</li>
+					<li>
+						сломано свг. лишний код(стрелки сделаны псевдоэлементом и шрифтом)
+						<div class="prev">
+							<a href="images/10-2.png" data-fancybox class="img"><img src="images/10-2.png" alt=""></a>
+						</div>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<ul>
+					<li>
+						блок карусель с клиентами.(относится ко всему проекту) все картинки должны быть на серваке, без
+						сторонних сервисов. картинки должны быть имагами, а не бэкграундами и явно не 5204px в длину. так же
+						существует очень давно формат .webp
+						<div class="prev">
+							<a href="images/11.png" data-fancybox class="img"><img src="images/11.png" alt=""></a>
+						</div>
+					</li>
+					<li>
+						опять слишком много лишних блоков
+						<div class="prev">
+							<a href="images/11-1.png" data-fancybox class="img"><img src="images/11-1.png" alt=""></a>
+						</div>
+					</li>
+					<li>
+						при переполнении блока этого(и всех в этом проекте) - меняется дизайн “волн” у бэкграунда
+						<div class="prev">
+							<a href="images/11-2.png" data-fancybox class="img"><img src="images/11-2.png" alt=""></a>
+						</div>
+					</li>
+				</ul>
+			</li>
+			<li>
+				блок с Show your ads across all major media . опять тянутся картинки с левого сервиса, некоторые не грузятся
+				. некоторые свг, некоторые .webp которые юзеры сафари не увидят(нет fallback )
+				<div class="prev">
+					<a href="images/12.png" data-fancybox class="img"><img src="images/12.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				блок Related articles. странный код, странное поведение при переполнении. дубликаты кода + в адаптиве
+				постоянно убирается 3-й блок.(потеря инфы)
+				<div class="prev">
+					<a href="images/13.png" data-fancybox="g" class="img"><img src="images/13.png" alt=""></a>
+					<a href="images/13-1.png" data-fancybox="g" class="img"><img src="images/13-1.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				лишний код.
+				<div class="prev">
+					<a href="images/14.png" data-fancybox class="img"><img src="images/14.png" alt=""></a>
+				</div>
+			</li>
+			<li><span class="text-warning">Адаптив:</span> главное меню при открытии. полностью неправильная логика меню.
+				нет самой прокрутки у контента меню. при попытки прокрутить меню - оно закрывается.(если высота браузера
+				маленькая[устройства], то не получить доступ к нижнему дропдауну и его кненту) воспользоваться меню на
+				телефоне в ландскейпе - не получится. + повторно не закрывается дропдаун-меню
+				<div class="prev">
+					<a href="images/15.png" data-fancybox class="img"><img src="images/15.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				<span class="text-warning">Адаптив:</span> блок .main-intro очень странное поведение в адаптиве , как и
+				странный бэкграунд + текст под кнопкой
+				<div class="prev">
+					<a href="images/16.png" data-fancybox="a" class="img"><img src="images/16.png" alt=""></a>
+					<a href="images/16-1.png" data-fancybox="a" class="img"><img src="images/16-1.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				<span class="text-warning">Адаптив:</span> блок аккордеона схлопываются маркеры треугольники
+				<div class="prev">
+					<a href="images/17.png" data-fancybox class="img"><img src="images/17.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				<span class="text-warning">Адаптив:</span> есть брейкпоинты , где футер имеет неправильный вид + появляется
+				скролл в горизонте у всей страницы + не правильно отображаются соц_сети
+				<div class="prev">
+					<a href="images/18.png" data-fancybox class="img"><img src="images/18.png" alt=""></a>
+				</div>
+			</li>
+		</ol>
+
+		<h4 class="text-center py-5"> https://www.influ2.com/demo-request</h4>
+		<ol>
+			<li>
+				загружается она так, что уже баг.
+				<div class="prev">
+					<a href="images/20.png" data-fancybox class="img"><img src="images/20.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				лишний скролл (хардкод у ифрейма)
+				<div class="prev">
+					<a href="images/20-1.png" data-fancybox class="img"><img src="images/20-1.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				в button находится куча лишнего
+				<div class="prev">
+					<a href="images/21.png" data-fancybox class="img"><img src="images/21.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				использование iconMoon (бывали ситуации когда они меняли движок на сайте и были проблемы с генерацией новых
+				иконок). лучше использовать свою систему генерации шрифта. или тот же fontawesome + нет красоты кода.(то свг
+				ставляется в хтмл, то картинкой подключается, то шрифтом)
+				<div class="prev">
+					<a href="images/22.png" data-fancybox class="img"><img src="images/22.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				<span class="text-warning">Адаптив:</span> при ~ 320px в горизонте скролл
+				<div class="prev">
+					<a href="images/23.png" data-fancybox class="img"><img src="images/23.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				<span class="text-warning">Адаптив:</span> тоже скролл у самого ифрейма
+				<div class="prev">
+					<a href="images/24.png" data-fancybox class="img"><img src="images/24.png" alt=""></a>
+				</div>
+			</li>
+		</ol>
+		<h4 class="text-center py-5">https://app.influ2.com/login</h4>
+		<ol>
+			<li>
+				в строчных элементах находятся блочные.код перегружен лишними тегами
+				<div class="prev">
+					<a href="images/25.png" data-fancybox class="img"><img src="images/25.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				<span class="text-warning">Адаптив:</span> его нет
+				<div class="prev">
+					<a href="images/26.png" data-fancybox class="img"><img src="images/26.png" alt=""></a>
+				</div>
+			</li>
+		</ol>
+		<h4 class="text-center py-5">https://www.influ2.com/about-us</h4>
+		<ol>
+			<li>
+				такой код будет читаться всегда сложнее. и текст надо делать всегда первее в коде, т.к. он важнее, чем
+				картинка или видео. если блоки в коде будут всегда чередоваться (справа картинка, в другом блоке слева
+				картинка и так дальше..) , то разумнее было бы сделать : текст всегда первый по коду и всегда слева, а на
+				чётных строках - всегда справа, но уже через цсс. меньше классов - меньше путаницы.
+				<div class="prev">
+					<a href="images/27.png" data-fancybox class="img"><img src="images/27.png" alt=""></a>
+				</div>
+			</li>
+		</ol>
+		<h4 class="text-center py-5">https://www.influ2.com/contact-us</h4>
+		<ol>
+			<li>
+				отсутствие дизайна. всё сливается и непонятно.
+				<div class="prev">
+					<a href="images/28.png" data-fancybox class="img"><img src="images/28.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				неправильное поведение у лейблов. при зажатии мыши выскакивает алерт-подсказка + нет цветового разделения.
+				всё сливается
+				<div class="prev">
+					<a href="images/29.png" data-fancybox class="img"><img src="images/29.png" alt=""></a>
+				</div>
+			</li>
+			<li>Адрес должен быть как тег <strong>address</strong> , на телефон должен нажать и позвонить</li>
+			<div class="prev">
+				<a href="images/30.png" data-fancybox class="img"><img src="images/30.png" alt=""></a>
+			</div>
+		</ol>
+		<h4 class="text-center py-5">https://www.influ2.com/blog</h4>
+		<ol>
+			<li>слишком большой текст для тега h4 + опять перегружен код
+				<div class="prev">
+					<a href="images/31.png" data-fancybox class="img"><img src="images/31.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				нельзя иметь пустые дивы без классов + есть опять же лишние вложения
+				<div class="prev">
+					<a href="images/32.png" data-fancybox class="img"><img src="images/32.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				зачем показывать пейджер если реализован бесконечный скролл ?
+				<div class="prev">
+					<a href="images/33.png" data-fancybox class="img"><img src="images/33.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				<span class="text-warning">Адаптив:</span> сыпется сетка причина - "очень продуманный код"
+				<div class="prev">
+					<a href="images/34.png" data-fancybox class="img"><img src="images/34.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				<span class="text-warning">Адаптив:</span> отсутствие дизайна
+				<div class="prev">
+					<a href="images/35.png" data-fancybox class="img"><img src="images/35.png" alt=""></a>
+				</div>
+			</li>
+		</ol>
+		<h4 class="text-center py-5">https://www.influ2.com/blog/amplitude-b2bsmx-2020</h4>
+		<ol>
+			<li>
+				не ссылки. где мне прописывать иискать урлы?
+				<div class="prev">
+					<a href="images/36.png" data-fancybox class="img"><img src="images/36.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				этот джеес не нужен здесь. лишнаяя нагрузка и тел0движение + он уже с багом.(не должен заходить на область
+				футера)
+				<div class="prev">
+					<a href="images/37.png" data-fancybox="h" class="img"><img src="images/37.png" alt=""></a>
+					<a href="images/37-1.png" data-fancybox="h" class="img"><img src="images/37-1.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				постоянно долго грузится контент
+				<div class="prev">
+					<a href="images/38.png" data-fancybox class="img"><img src="images/38.png" alt=""></a>
+				</div>
+			</li>
+			<li>
+				нет H1
+			</li>
+			<li><span class="text-warning">Адаптив:</span> баг
+				<div class="prev">
+					<a href="images/40.png" data-fancybox class="img"><img src="images/40.png" alt=""></a>
+				</div>
+			</li>
+		</ol>
+		<h4 class="text-center py-5">https://www.influ2.com/buying-group-marketing-report</h4>
+		<ol>
+			<li>
+				<span class="text-warning">Адаптив:</span> его нет
+				<div class="prev">
+					<a href="images/39.png" data-fancybox class="img"><img src="images/39.png" alt=""></a>
+				</div>
+			</li>
+		</ol>
+		<div class="alert alert-danger">
+			<h1>Весь проект разваливается в ie11</h1>
+			<ul>
+				<li>нет нормального сео; не заметил хотя бы <strong>H1</strong></li>
+				<li>нет семантики;</li>
+				<li>качество кода очень хромает;</li>
+				<li>используется 2 вида галерей (самописная и slick). можно было бы заюзать 1.</li>
+				<li>очень низкая скорость загрузки страницы
+					<div class="prev">
+						<a href="images/19.png" data-fancybox="af" class="img"><img src="images/19.png" alt=""></a>
+						<a href="images/19-1.png" data-fancybox="af" class="img"><img src="images/19-1.png" alt=""></a>
+					</div>
+				</li>
+				<li>
+					Валидацию страницы не проходят
+				</li>
+				<li>футер не прикреплен к низу. при малом контенте он будет просто болтаться сверху</li>
+				<li>нет оптимазации имаг</li>
+			</ul>
+		</div>
+	</div>
+	<script src="js/fancyBox.js"></script>
+</body>
+
+</html>
